@@ -14,7 +14,7 @@
                     <a class="nav-link active text-info" href=" {{ path("project_index")}}">Acceuil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-info" href="#">Vos Projets</a>
+                    <a class="nav-link text-info" href="#">Vos Projets Archivés</a>
                 </li>
                 <li class="nav-item">
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
@@ -33,7 +33,9 @@
                 </div>
             </div>
         </header>
-        {% block body %}{% endblock %}
+        <main class="container">
+            {% block body %}{% endblock %}
+        </main>
         <footer>
             <div class="jumbotron jumbotron-fluid bg-info">
                 <div class="container">

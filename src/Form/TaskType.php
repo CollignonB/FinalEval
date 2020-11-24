@@ -6,6 +6,7 @@ use App\Entity\Task;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class TaskType extends AbstractType
 {
@@ -14,10 +15,14 @@ class TaskType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('creation_date')
             ->add('deadline')
             ->add('status')
-            ->add('project')
+            ->add('save', SubmitType::class, [
+                'label' => 'Modifier',
+                'attr' => [
+                  "class" => "btn btn-info"
+                ]
+              ])
         ;
     }
 

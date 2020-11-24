@@ -3,14 +3,10 @@
 {% block title %}Project{% endblock %}
 
 {% block body %}
-    <h1>Project</h1>
+    <h1>{{ project.name }}</h1>
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ project.id }}</td>
-            </tr>
             <tr>
                 <th>Description</th>
                 <td>{{ project.description }}</td>
@@ -28,8 +24,13 @@
                 <td>{{ project.status ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
-                <th>Name</th>
-                <td>{{ project.name }}</td>
+                <th>Liste des taches</th>
+                {% for task in tasks %}
+                <tr>
+                    <td><a href="{{ path('task_show', {'id' : task.id}) }}">{{ task.name }}</a></td>
+                    <td>{{ task.description }}</td>
+                </tr>
+                {% endfor %}
             </tr>
         </tbody>
     </table>

@@ -23,8 +23,6 @@ class ProjectController extends AbstractController
      */
     public function index(ProjectRepository $projectRepository): Response
     {
-        $projects = $projectRepository->findAll();
-        $user = $projects[0]->getUser()->getId();
         return $this->render('project/index.html.twig', [
             'projects' => $projectRepository->findAll(),
         ]);
@@ -41,6 +39,8 @@ class ProjectController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $project->setCreationDate(new \Datetime);
+            $project->setUser($this->getUser());
             $entityManager->persist($project);
             $entityManager->flush();
 
@@ -58,8 +58,12 @@ class ProjectController extends AbstractController
      */
     public function show(Project $project): Response
     {
+        $tasks = $project->getTask();
+        // dump($tasks);
+        
         return $this->render('project/show.html.twig', [
             'project' => $project,
+            'tasks' => $tasks,
         ]);
     }
 
