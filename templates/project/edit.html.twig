@@ -6,5 +6,5 @@
     <h1>Modifier le Projet {{project.id}}</h1>
     {{ form(form)}}
 
-    <a href="{{ path('project_index') }}">Retour</a>
+    <a href="{{ path('project_show', {'id' : project.id}) }}">Retour</a>
 {% endblock %}
