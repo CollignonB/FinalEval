@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Project;
 use App\Entity\User;
+use App\Entity\Task;
 use App\Form\ProjectType;
 use App\Repository\ProjectRepository;
+use App\Repository\TaskRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -82,6 +84,19 @@ class ProjectController extends AbstractController
         $tasks = $project->getTask();
         
         return $this->render('project/show.html.twig', [
+            'project' => $project,
+            'tasks' => $tasks,
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/deadline", name="showTasksByDeadline", methods={"GET"})
+     */
+    public function showTasksByDeadlin(Project $project, TaskRepository $taskRepository): Response
+    {
+        $tasks = $taskRepository->getTaskByDeadline($project->getId());
+        
+        return $this->render('project/showTasksByDeadline.html.twig', [
             'project' => $project,
             'tasks' => $tasks,
         ]);

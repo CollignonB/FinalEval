@@ -24,7 +24,7 @@
                 <td>{{ project.status ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
-                <th>Liste des taches <a href=" {{ path('showTasksByDeadline', {'id' : project.id}) }}">Trier par deadline </a></th>
+                <th>Liste des taches <a href="taskByDeadline">Trier par deadline </a></th>
                 {% for task in tasks %}
             <tr>
                 <td><a href="{{ path('task_show', {'id' : task.id}) }}">{{ task.name }}</a></td>

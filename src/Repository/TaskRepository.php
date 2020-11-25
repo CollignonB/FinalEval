@@ -23,9 +23,11 @@ class TaskRepository extends ServiceEntityRepository
      * @return Task[] Returns an array of Task objects
     */
 
-    public function getTaskByDeadline()
+    public function getTaskByDeadline(int $projectId)
     {
         return $this->createQueryBuilder('t')
+            ->where('t.project = :project_id')
+            ->setParameter('project_id', $projectId)
             ->orderBy('t.deadline', 'ASC')
             ->getQuery()
             ->getResult()
