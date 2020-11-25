@@ -29,6 +29,16 @@ class ProjectController extends AbstractController
     }
 
     /**
+     *  @Route("/archive", name="show_archive", methods={"GET"})
+     */
+    public function show_archive(ProjectRepository $projectRepository): Response
+    {
+        return $this->render('project/archive.html.twig', [
+            'projects' => $projectRepository->findAll(),
+        ]);
+    }
+
+    /**
      * @Route("/new", name="project_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
@@ -59,7 +69,6 @@ class ProjectController extends AbstractController
     public function show(Project $project): Response
     {
         $tasks = $project->getTask();
-        dump($project->getId());
         
         return $this->render('project/show.html.twig', [
             'project' => $project,
@@ -74,7 +83,7 @@ class ProjectController extends AbstractController
     {
         $form = $this->createForm(ProjectType::class, $project);
         $form->handleRequest($request);
-
+        dump($project->getTask());
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
@@ -92,6 +101,7 @@ class ProjectController extends AbstractController
      */
     public function delete(Request $request, Project $project): Response
     {
+        dump($project->getTask()[0]);
         if ($this->isCsrfTokenValid('delete'.$project->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($project);
