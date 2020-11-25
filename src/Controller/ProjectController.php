@@ -39,6 +39,17 @@ class ProjectController extends AbstractController
     }
 
     /**
+     * @Route("/deadline", name="projectByDeadline", methods={"GET"})
+     */
+    public function getByDeadline(ProjectRepository $projectRepository): Response
+    {
+
+        return $this->render('project/byDeadline.html.twig', [
+            'projects' => $projectRepository->getProjectByDeadline(),
+        ]);
+    }
+
+    /**
      * @Route("/new", name="project_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response

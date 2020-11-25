@@ -29,6 +29,16 @@ class TaskController extends AbstractController
         ]);
     }
 
+    // /**
+    //  * @Route("/deadline", name="taskByDeadline", methods={"GET"})
+    //  */
+    // public function getByDeadline(TaskRepository $taskRepository): Response
+    // {
+
+    //     return $this->render('project/byDeadline.html.twig', [
+    //         'tasks' => $taskRepository->getTaskByDeadline(),
+    //     ]);
+    // }
     /**
      * @Route("{id}/new", name="task_new", methods={"GET","POST"})
      */
