@@ -10,7 +10,7 @@
     {% for project in projects %}
     {% if project.status == 0 %}
         {% if project.user.id is same as app.user.id %}
-                <div class="card col-sm-12 col-lg-3 m-3" style="width: 18rem;">
+                <div class="card col-sm-12 col-lg-3 m-3 card-body" style="width: 18rem;">
                     <div class="card-body">
                         <a href="{{ path('project_show', {'id' : project.id}) }}" class="card-title">{{ project.name }}</a>
                         <h6 class="card-subtitle mb-2 text-muted">date de création : {{ project.creationDate ? project.creationDate|date('d-m-Y') : '' }}</h6>

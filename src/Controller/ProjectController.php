@@ -127,7 +127,6 @@ class ProjectController extends AbstractController
      */
     public function delete(Request $request, Project $project): Response
     {
-        dump($project->getTask()[0]);
         if ($this->isCsrfTokenValid('delete'.$project->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($project);
