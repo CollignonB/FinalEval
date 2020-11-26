@@ -26,11 +26,19 @@
             <tr>
                 <th>Liste des taches <a href=" {{ path('showTasksByDeadline', {'id' : project.id}) }}">Trier par deadline </a></th>
                 {% for task in tasks %}
+                {% if task.status %}
+            <tr class = "bg-success">
+                <td><a href="{{ path('task_show', {'id' : task.id}) }}">{{ task.name }}</a></td>
+                <td>{{ task.description }}</td>
+                <td>{{ task.deadline ? task.deadline|date('d-m-Y') : ''  }}</td>
+            </tr>
+                {% else %}
             <tr>
                 <td><a href="{{ path('task_show', {'id' : task.id}) }}">{{ task.name }}</a></td>
                 <td>{{ task.description }}</td>
                 <td>{{ task.deadline ? task.deadline|date('d-m-Y') : ''  }}</td>
             </tr>
+                {% endif %}
             {% endfor %}
         </tr>
         </tbody>
