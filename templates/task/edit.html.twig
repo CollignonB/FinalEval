@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Task{% endblock %}
+
+{% block body %}
+    <h1>Modifier la Tache {{ task.id}}</h1>
+        {{ form(form)}}
+
+    <a href="{{ path('project_index') }}">Retour</a>
+{% endblock %}

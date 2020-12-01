@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Project index{% endblock %}
+
+{% block body %}
+    <a href="{{ path('project_new')}}" class = "btn btn-info">Créer un projet</a>
+    <a href="{{ path('projectByDeadline')}}" class = "btn btn-info">Trier par deadline</a>
+    <h1>Vos projets en cours</h1>
+    <div class="row justify-content-center">
+    {% for project in projects %}
+    {% if project.status == 0 %}
+        {% if project.user.id is same as app.user.id %}
+                <div class="card col-sm-12 col-lg-3 m-3 card-body" style="width: 18rem;">
+                    <div class="card-body">
+                        <a href="{{ path('project_show', {'id' : project.id}) }}" class="card-title">{{ project.name }}</a>
+                        <h6 class="card-subtitle mb-2 text-muted">date de création : {{ project.creationDate ? project.creationDate|date('d-m-Y') : '' }}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">deadline : {{ project.deadline ? project.deadline|date('d-m-Y') : '' }}</h6>
+                    </div>
+                </div>
+        {% endif %}
+    {% endif %}    
+    {% endfor %}
+    </div>
+{% endblock %}
